@@ -37,6 +37,7 @@ app.post("/api/send", (req, res) => {
 });
 
 app.listen(PORT, () => {
+  console.log(`WebSocket server is running on port ${WS_PORT}`);
   console.log(`Server is running on port : ${PORT}`);
 });
 
