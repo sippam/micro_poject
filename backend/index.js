@@ -6,8 +6,9 @@ const { fecth_all_data } = require("./query/all_query");
 
 app.use(bodyParser.json());
 
-const wss = new WebSocket.Server({ port: 8080 });
 const PORT = 3001;
+const WS_PORT = 8080;
+const wss = new WebSocket.Server({ port: WS_PORT });
 
 wss.on("connection", async (ws) => {
   console.log("Client connected");
