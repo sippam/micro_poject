@@ -26,11 +26,11 @@ wss.on("connection", async (ws) => {
 });
 
 app.post("/api/send", (req, res) => {
-  const { sensor_value } = req.body;
+  const { time_stamp, acc, temp } = req.body;
 
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
-      client.send(JSON.stringify({ sensorValue: sensor_value, tem: 25 }));
+      client.send(JSON.stringify({ time_stamp: time_stamp, acc: acc, temp: temp }));
     }
   });
 
