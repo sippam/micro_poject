@@ -26,7 +26,8 @@ wss.on("connection", async (ws) => {
 });
 
 app.post("/api/send", (req, res) => {
-  const { time_stamp, acc, temp } = req.body;
+  const { acc, temp } = req.body;
+  const time_stamp = new Date().toLocaleString('en-US', { timeZone: 'Asia/Bangkok' });
 
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
