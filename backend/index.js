@@ -14,7 +14,7 @@ const {
   // count_critical_acc,
 } = require("./query/v_rms_query");
 const { insert_critical_temp } = require("./query/temp_query");
-// const {broadcastMessage} = require("./line/line_connect");
+const {broadcastMessage} = require("./line/line_connect");
 app.use(bodyParser.json());
 
 const PORT = 3001;
@@ -50,7 +50,7 @@ const set_last_time = (current_time) => {
     console.log("Send noti");
 
     // Line noti
-    // broadcastMessage();
+    broadcastMessage();
   }
 };
 
