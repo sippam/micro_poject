@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { WebSocketProvider } from "@/libs/web-socket-context";
+import { WebSocketProvider } from "@/lib/web-socket-context";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

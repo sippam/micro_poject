@@ -4,4 +4,5 @@ export interface AllGraph {
     acc: string;
     temp: string;
   }[];
+  closeConnection: (isDisconnect: boolean) => void;
 }

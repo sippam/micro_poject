@@ -1,4 +1,4 @@
-import { useWebSocket } from "@/libs/web-socket-context";
+import { useWebSocket } from "@/lib/web-socket-context";
 import React, { useEffect } from "react";
 import {
   LineChart,
