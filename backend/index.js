@@ -12,7 +12,7 @@ const {
 const {
   insert_critical_v_rms,
   // count_critical_acc,
-} = require("./query/acc_query");
+} = require("./query/v_rms_query");
 const { insert_critical_temp } = require("./query/temp_query");
 // const {broadcastMessage} = require("./line/line_connect");
 app.use(bodyParser.json());
