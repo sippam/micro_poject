@@ -14,18 +14,38 @@ const class_machine = [
   "เครื่องจักรขนาดใหญ่ที่มีฐานยืดหยุ่น",
 ];
 
+const convert_time_date = (time) => {
+  // Convert the timestamp to a Date object
+  const date = new Date(time);
+
+  // Format the date as "DD/MM/YYYY HH:MM:SS"
+  const formattedDate = date.toLocaleString("th-TH", {
+    timeZone: "Asia/Bangkok",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+
+  return formattedDate;
+};
+
 const broadcastMessage = async (time_stamp, acc, temp, mode) => {
   const message = {
     type: "text",
     text:
       "เครื่องจักรเกิดการสั่นปัญหา!\nเครื่องจักร: " +
       class_machine[mode] +
-      "\nความเร็ซวในการสั่น: " +
+      "\nความเร็วในการสั่น: " +
       acc +
+      "mm/s" +
       "\nอุณหภูมิ: " +
       temp +
+      "°C" +
       "\nเวลา: " +
-      time_stamp,
+      convert_time_date(time_stamp),
   };
 
   try {
