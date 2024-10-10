@@ -9,10 +9,11 @@ const {
   // fecth_all_data,
   // get_min_max_date,
 } = require("./query/all_query");
-// const {
-//   insert_critical_acc,
-//   count_critical_acc,
-// } = require("./query/acc_query");
+const {
+  insert_critical_v_rms,
+  // count_critical_acc,
+} = require("./query/acc_query");
+const { insert_critical_temp } = require("./query/temp_query");
 // const {broadcastMessage} = require("./line/line_connect");
 app.use(bodyParser.json());
 
@@ -43,45 +44,40 @@ const set_last_time = (current_time) => {
 
   console.log("last_time_noti", last_time_noti);
   console.log("current_time_format", current_time_format);
-  
+
   if (current_time_format - last_time_noti > 300000) {
     last_time_noti = current_time_format;
     console.log("Send noti");
-    
+
     // Line noti
     // broadcastMessage();
   }
-}
+};
+
+const v_rms_Thresholds = [7.1, 11.2, 18.0, 28.0];
+const temp_Thresholds = 45;
+
+const set_mode = (time_stamp, v_rms, temp, mode) => {
+  if (v_rms > v_rms_Thresholds[mode]) {
+    insert_critical_v_rms(time_stamp, v_rms);
+    set_last_time(time_stamp);
+  }
+
+  if (temp > temp_Thresholds) {
+    insert_critical_temp(time_stamp, temp);
+    set_last_time(time_stamp);
+  }
+};
 
 app.post("/api/send", async (req, res) => {
-  const { acc, temp, mode } = req.body;
-  console.log("acc", acc, "temp", temp, "mode", mode);
-  
+  const { v_rms, temp, mode } = req.body;
+  console.log("v_rms", v_rms, "temp", temp, "mode", mode);
+
   const time_stamp = new Date().toISOString("en-US", {
     timeZone: "Asia/Bangkok",
   });
 
-  switch (mode) {
-    case 1:
-      set_last_time(time_stamp);
-      break;
-
-    case 2:
-      set_last_time(time_stamp);
-      break;
-
-    case 3:
-      set_last_time(time_stamp);
-      break;
-
-    case 4:
-      set_last_time(time_stamp);
-      break;
-
-    default:
-      console.log("error");
-      break;
-  }
+  set_mode(time_stamp, v_rms, temp, mode);
 
   // wss.clients.forEach((client) => {
   //   if (client.readyState === WebSocket.OPEN) {

@@ -1,6 +1,6 @@
-const connection = require("./../db");
+const connection = require("../db");
 
-const insert_critical_acc = async (time_stamp, acc) => {
+const insert_critical_v_rms = async (time_stamp, acc) => {
   const mysqlTimestamp = new Date(time_stamp)
     .toISOString()
     .slice(0, 19)
@@ -9,7 +9,7 @@ const insert_critical_acc = async (time_stamp, acc) => {
   try {
     const [result] = await connection
       .promise()
-      .query("INSERT INTO `critical_acc` (time_stamp, acc) VALUES (?, ?)", [
+      .query("INSERT INTO `critical_v_rms` (time_stamp, v_rms) VALUES (?, ?)", [
         mysqlTimestamp,
         acc,
       ]);
@@ -30,4 +30,4 @@ const count_critical_acc = async () => {
   }
 };
 
-module.exports = { insert_critical_acc, count_critical_acc };
+module.exports = { insert_critical_v_rms, count_critical_acc };

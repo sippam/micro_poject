@@ -10,7 +10,7 @@ const insert_all_date = async (time_stamp, acc, temp) => {
   try {
     const [result] = await connection
       .promise()
-      .query("INSERT INTO `all` (time_stamp, acc, temp) VALUES (?, ?, ?)", [
+      .query("INSERT INTO `all` (time_stamp, v_rms, temp) VALUES (?, ?, ?)", [
         mysqlTimestamp,
         acc,
         temp,
