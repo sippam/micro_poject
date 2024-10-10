@@ -45,7 +45,7 @@ const set_last_time = (current_time) => {
   console.log("last_time_noti", last_time_noti);
   console.log("current_time_format", current_time_format);
 
-  if (current_time_format - last_time_noti > 300000) {
+  if (current_time_format - last_time_noti > 120000) {
     last_time_noti = current_time_format;
     console.log("Send noti");
 
