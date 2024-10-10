@@ -40,10 +40,10 @@ const broadcastMessage = async (time_stamp, acc, temp, mode) => {
       class_machine[mode] +
       "\nความเร็วในการสั่น: " +
       acc +
-      "mm/s" +
+      " mm/s" +
       "\nอุณหภูมิ: " +
       temp +
-      "°C" +
+      " °C" +
       "\nเวลา: " +
       convert_time_date(time_stamp),
   };
