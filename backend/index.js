@@ -14,7 +14,7 @@ const {
   // count_critical_acc,
 } = require("./query/v_rms_query");
 const { insert_critical_temp } = require("./query/temp_query");
-const {broadcastMessage} = require("./line/line_connect");
+const { broadcastMessage } = require("./line/line_connect");
 app.use(bodyParser.json());
 
 const PORT = 3001;
@@ -39,7 +39,7 @@ const PORT = 3001;
 // });
 let last_time_noti = 0;
 
-const set_last_time = (current_time) => {
+const set_last_time = (current_time, v_rms, temp, mode) => {
   current_time_format = new Date(current_time).getTime();
 
   console.log("last_time_noti", last_time_noti);
@@ -50,7 +50,7 @@ const set_last_time = (current_time) => {
     console.log("Send noti");
 
     // Line noti
-    broadcastMessage();
+    broadcastMessage(current_time, v_rms, temp, mode);
   }
 };
 
@@ -60,12 +60,12 @@ const temp_Thresholds = 45;
 const set_mode = (time_stamp, v_rms, temp, mode) => {
   if (v_rms > v_rms_Thresholds[mode]) {
     insert_critical_v_rms(time_stamp, v_rms);
-    set_last_time(time_stamp);
+    set_last_time(time_stamp, v_rms, temp, mode);
   }
 
   if (temp > temp_Thresholds) {
     insert_critical_temp(time_stamp, temp);
-    set_last_time(time_stamp);
+    set_last_time(time_stamp, v_rms, temp, mode);
   }
 };
 
