@@ -88,7 +88,7 @@ app.post("/api/send", async (req, res) => {
   // });
 
   // Inset to all table
-  await insert_all_date(time_stamp, acc, temp);
+  await insert_all_date(time_stamp, v_rms, temp);
   // console.log("Data insert_all_data_result inserted", insert_all_data_result);
 
   // const data = await insert_critical_acc(time_stamp, acc);
