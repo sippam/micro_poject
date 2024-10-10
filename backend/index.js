@@ -55,7 +55,7 @@ const set_last_time = (current_time, v_rms, temp, mode) => {
 };
 
 const v_rms_Thresholds = [7.1, 11.2, 18.0, 28.0];
-const temp_Thresholds = 45;
+const temp_Thresholds = 50;
 
 const set_mode = (time_stamp, v_rms, temp, mode) => {
   if (v_rms > v_rms_Thresholds[mode]) {
